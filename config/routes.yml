@@ -1,0 +1,8 @@
+first_module:
+  path: /firstmodule/configuration
+  methods: [GET, POST]
+  defaults:
+    _controller: 'PrestaShop\Module\FirstModule\Controller\FirstModuleConfigurationController::index'
+    # Needed to work with tab system
+    _legacy_controller: AdminFirstModule
+    _legacy_link: AdminFirstModule
