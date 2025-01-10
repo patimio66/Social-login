@@ -8,11 +8,11 @@ use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class FirstModuleConfigurationController extends FrameworkBundleAdminController
+class OAuthSignInConfigurationController extends FrameworkBundleAdminController
 {
     public function index(Request $request): Response
     {
-        $textFormDataHandler = $this->get('prestashop.module.firstmodule.form.firstmodule_form_data_handler');
+        $textFormDataHandler = $this->get('prestashop.module.oauthsignin.form.oauthsignin_form_data_handler');
 
         $textForm = $textFormDataHandler->getForm();
         $textForm->handleRequest($request);
@@ -24,14 +24,14 @@ class FirstModuleConfigurationController extends FrameworkBundleAdminController
             if (empty($errors)) {
                 $this->addFlash('success', $this->trans('Successful update.', 'Admin.Notifications.Success'));
 
-                return $this->redirectToRoute('first_module');
+                return $this->redirectToRoute('o_auth_sign_in');
             }
 
             $this->flashErrors($errors);
         }
 
-        return $this->render('@Modules/firstmodule/views/templates/admin/form.html.twig', [
-            'firstModuleConfigurationForm' => $textForm->createView()
+        return $this->render('@Modules/oauthsignin/views/templates/admin/form.html.twig', [
+            'oAuthSignInConfigurationForm' => $textForm->createView()
         ]);
     }
 }
