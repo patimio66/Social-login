@@ -27,4 +27,3 @@ services:
       - '@prestashop.module.oauthsignin.form.oauthsignin_form_data_provider'
       - 'PrestaShop\Module\OAuthSignIn\Form\OAuthSignInFormType'
       - 'OAuthSignInConfiguration'
-
