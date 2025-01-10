@@ -66,7 +66,7 @@ class OAuthSignIn extends Module
 
     public function getContent()
     {
-        $route = $this->get('router')->generate('first_module');
+        $route = $this->get('router')->generate('o_auth_sign_in');
         Tools::redirectAdmin($route);
     }  
 }

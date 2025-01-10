@@ -1,8 +1,8 @@
-first_module:
-  path: /firstmodule/configuration
+o_auth_sign_in:
+  path: /oauthsignin/configuration
   methods: [GET, POST]
   defaults:
-    _controller: 'PrestaShop\Module\FirstModule\Controller\FirstModuleConfigurationController::index'
+    _controller: 'PrestaShop\Module\OAuthSignIn\Controller\OAuthSignInConfigurationController::index'
     # Needed to work with tab system
-    _legacy_controller: AdminFirstModule
-    _legacy_link: AdminFirstModule
+    _legacy_controller: AdminOAuthSignIn
+    _legacy_link: AdminOAuthSignIn
