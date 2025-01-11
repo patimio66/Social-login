@@ -12,7 +12,9 @@ services:
 
   prestashop.module.oauthsignin.form.oauthsignin_data_configuration:
     class: 'PrestaShop\Module\OAuthSignIn\Form\OAuthSignInDataConfiguration'
-    arguments: ['@prestashop.adapter.legacy.configuration']
+    arguments: 
+      - '@prestashop.adapter.legacy.configuration'
+      - '@router'
 
   prestashop.module.oauthsignin.form.oauthsignin_form_data_provider:
     class: 'PrestaShop\Module\OAuthSignIn\Form\OAuthSignInFormDataProvider'

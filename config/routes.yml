@@ -11,4 +11,4 @@ google_callback:
   path: /oauthsignin/google-callback
   methods: [GET, POST]
   defaults:
-    _controller: 'PrestaShop\Module\OAuthSignIn\Services\GoogleLoginService'
+    _controller: 'PrestaShop\Module\OAuthSignIn\Controller\GoogleCallbackController::callback'

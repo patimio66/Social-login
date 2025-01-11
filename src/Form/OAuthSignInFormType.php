@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Prestashop\Module\OAuthSignIn\Form;
+namespace PrestaShop\Module\OAuthSignIn\Form;
 
 use PrestaShopBundle\Form\Admin\Type\TranslatorAwareType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class OAuthSignInFormType extends TranslatorAwareType
@@ -14,20 +13,22 @@ class OAuthSignInFormType extends TranslatorAwareType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('config_text', TextType::class, [
-            'label' => $this->trans('Configuration text', 'Modules.OAuthSignIn.Admin'),
-            'help' => $this->trans('Maximum 32 characters', 'Modules.OAuthSignIn.Admin'),
+            ->add('google_client_id', TextType::class, [
+            'label' => $this->trans('Google Client ID', 'Modules.OAuthSignIn.Admin'),
+            'help' => $this->trans('Maximum 255 characters', 'Modules.OAuthSignIn.Admin'),
+            'required' => false,
+            ])
+            ->add('google_client_secret', TextType::class, [
+                'label' => $this->trans('Google Client Secret', 'Modules.OAuthSignIn.Admin'),
+                'help' => $this->trans('Maximum 255 characters', 'Modules.OAuthSignIn.Admin'),
+                'required' => false,    
+            ])
+            ->add('redirect_url', TextType::class, [
+                'label' => $this->trans('Your Redirect URL', 'Modules.OAuthSignIn.Admin'),
+                'mapped' => false,
+                'required' => false,
+                'disabled' => true,
             ]);
-            $builder->add('choice_field', ChoiceType::class, [
-                'label'    => $this->trans('Select something', 'Modules.OAuthSignIn.Admin'),
-                'choices'  => [
-                    // "etykieta" => "wartość", 
-                    $this->trans('Option A', 'Modules.OAuthSignIn.Admin') => 'A',
-                    $this->trans('Option B', 'Modules.OAuthSignIn.Admin') => 'B',
-                    $this->trans('Option C', 'Modules.OAuthSignIn.Admin') => 'C',
-                ],
-                'required' => false, 
-                'help'     => $this->trans('Pick any option you like', 'Modules.OAuthSignIn.Admin'),
-            ]);
+            
     }
 }

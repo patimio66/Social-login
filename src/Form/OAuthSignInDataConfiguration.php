@@ -1,37 +1,60 @@
 <?php
 declare(strict_types=1);
 
-namespace Prestashop\Module\OAuthSignIn\Form;
+namespace PrestaShop\Module\OAuthSignIn\Form;
 
 use PrestaShop\PrestaShop\Core\Configuration\DataConfigurationInterface;
 use PrestaShop\PrestaShop\Core\ConfigurationInterface;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 /**
  * Configuration is used to save data to configuration table and retrieve from it.
  */
 final class OAuthSignInDataConfiguration implements DataConfigurationInterface
 {
-    public const FIRST_MODULE_FORM_SIMPLE_TEXT_TYPE = 'FIRST_MODULE_FORM_SIMPLE_TEXT_TYPE';
-    public const CONFIG_MAXLENGTH = 32;
-    public const FIRST_MODULE_CHOICE_FIELD = 'FIRST_MODULE_CHOICE_FIELD';
+    public const OAUTH_GOOGLE_CLIENT_ID = 'OAUTH_GOOGLE_CLIENT_ID';
+    public const OAUTH_GOOGLE_CLIENT_SECRET = 'OAUTH_GOOGLE_CLIENT_SECRET';
+    public const CONFIG_MAXLENGTH = 255;
 
     /**
      * @var ConfigurationInterface
      */
     private $configuration;
 
-    public function __construct(ConfigurationInterface $configuration)
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    public function __construct(ConfigurationInterface $configuration, RouterInterface $router)
     {
         $this->configuration = $configuration;
+        $this->router = $router;
     }
 
     public function getConfiguration(): array
     {
         $return = [];
 
+        $redirectUrl = 'Niezdefiniowany URL';
+
+        try {
+            $redirectUrl = $this->router->generate('google_callback', [], UrlGeneratorInterface::ABSOLUTE_URL);
+            var_dump('redirect url = ' . $redirectUrl);
+            die;
+        } catch (RouteNotFoundException $e) {
+            var_dump('Route not found: ' . $e->getMessage());
+            die;
+        }
+        
         $return = [ 
-            'config_text' => $this->configuration->get(static::FIRST_MODULE_FORM_SIMPLE_TEXT_TYPE),
-            'choice_field' => $this->configuration->get(static::FIRST_MODULE_CHOICE_FIELD),
+            'google_client_id' => $this->configuration->get(self::OAUTH_GOOGLE_CLIENT_ID),
+            'google_client_secret' => $this->configuration->get(self::OAUTH_GOOGLE_CLIENT_SECRET),
+            'redirect_url' => $redirectUrl
         ];
 
         return $return;
@@ -41,20 +64,29 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
     {
         $errors = [];
 
-        if ($this->validateConfiguration($configuration)) {
-            if (strlen($configuration['config_text']) <= static::CONFIG_MAXLENGTH) {
-                $this->configuration->set(static::FIRST_MODULE_FORM_SIMPLE_TEXT_TYPE, $configuration['config_text']);
-            } else {
-                $errors[] = 'FIRST_MODULE_FORM_SIMPLE_TEXT_TYPE value is too long';
-            }
+        if (!$this->validateConfiguration($configuration)) {
+            $errors[] = 'Google Client ID and Google Secret must not be empty.';
+            return $errors;
         }
 
-        if ($this->validateConfiguration($configuration)) {
-            if (($configuration['choice_field']) == ('A' || 'B' || 'C')) {
-                $this->configuration->set(static::FIRST_MODULE_CHOICE_FIELD, $configuration['choice_field']);
-            } else {
-                $errors[] = 'FIRST_MODULE_CHOICE_FIELD wrong choice choosen';
-            }
+        $clientId = trim($configuration['google_client_id']);
+        $clientSecret = trim($configuration['google_client_secret']);
+
+        if (empty($clientId)) {
+            $errors[] = 'Google Client ID cannot be empty.';
+        } elseif (strlen($clientId) > self::CONFIG_MAXLENGTH) {
+            $errors[] = 'Google Client ID is too long.';
+        }
+
+        if (empty($clientSecret)) {
+            $errors[] = 'Google Client Secret cannot be empty.';
+        } elseif (strlen($clientSecret) > self::CONFIG_MAXLENGTH) {
+            $errors[] = 'Google Client Secret is too long.';
+        }
+
+        if (empty($errors)) {
+            $this->configuration->set(static::OAUTH_GOOGLE_CLIENT_ID, $clientId);
+            $this->configuration->set(static::OAUTH_GOOGLE_CLIENT_SECRET, $clientSecret);
         }
 
         /* Errors are returned here. */
@@ -68,6 +100,6 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
      */
     public function validateConfiguration(array $configuration): bool
     {
-        return isset($configuration['config_text']) && isset($configuration['choice_field']);
+        return isset($configuration['google_client_id']) && isset($configuration['google_client_secret']);
     }
 }

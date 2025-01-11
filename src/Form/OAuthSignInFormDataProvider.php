@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prestashop\Module\OAuthSignIn\Form;
+namespace PrestaShop\Module\OAuthSignIn\Form;
 
 use PrestaShop\PrestaShop\Core\Configuration\DataConfigurationInterface;
 use PrestaShop\PrestaShop\Core\Form\FormDataProviderInterface;
