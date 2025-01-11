@@ -55,7 +55,8 @@ class OAuthSignIn extends Module implements WidgetInterface
     public function install()
     {
         return parent::install()
-            && $this->registerHook('displayCustomerLoginFormAfter');
+            && $this->registerHook('displayCustomerLoginFormAfter')
+            && $this->registerHook('header');
     }
 
     /**
@@ -97,4 +98,13 @@ class OAuthSignIn extends Module implements WidgetInterface
         return $this->renderWidget('displayCustomerLoginFormAfter', $params);
     }
 
+    public function hookHeader($params)
+    {
+        // Rejestracja stylu z pliku w module
+        $this->context->controller->registerStylesheet(
+            'oauthsignin-style',                           // unikalny ID zasobu
+            'modules/'.$this->name.'/views/css/oauth.css', // ścieżka do pliku w module
+            [ 'media' => 'all', 'priority' => 150 ]
+        );
+    }
 }
