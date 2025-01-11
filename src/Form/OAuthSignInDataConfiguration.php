@@ -30,8 +30,8 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
     {
         $return = [];
         
+        //generating link viewed in module back office form field
         $context = Context::getContext();
-
         $redirectUrl = $context->link->getModuleLink(
             'oauthsignin',
             'googlecallback',
