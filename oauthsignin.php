@@ -87,9 +87,15 @@ class OAuthSignIn extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName, array $configuration)
     {
-        // w zależności od hooka możesz zwrócić inne dane
+        $container = SymfonyContainer::getInstance();
+
+        $googleLoginService = $container->get('prestashop.module.oauthsignin.google_login_service');
+
+        $googleLoginUrl = $googleLoginService->getLoginUrl();
+        
         return [
-            'name' => 'Adam'
+            'name' => 'Adam',
+            'google_login_url' => $googleLoginUrl
         ];
     }
 

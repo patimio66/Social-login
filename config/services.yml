@@ -29,3 +29,6 @@ services:
       - '@prestashop.module.oauthsignin.form.oauthsignin_form_data_provider'
       - 'PrestaShop\Module\OAuthSignIn\Form\OAuthSignInFormType'
       - 'OAuthSignInConfiguration'
+
+  prestashop.module.oauthsignin.google_login_service:
+    class: 'PrestaShop\Module\OAuthSignIn\Services\GoogleLoginService'
