@@ -25,8 +25,9 @@ if (!defined('_PS_VERSION_')) {
 }
 
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
+use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
-class OAuthSignIn extends Module
+class OAuthSignIn extends Module implements WidgetInterface
 {
     public function __construct()
     {
@@ -38,7 +39,7 @@ class OAuthSignIn extends Module
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = 'Oauth Sign In Module';
+        $this->displayName = 'OAuth2 Sign In Module';
         $this->description = 'Module provides users sign in with Google or Apple';
         $this->confirmUninstall = '';
     
@@ -53,7 +54,8 @@ class OAuthSignIn extends Module
      */
     public function install()
     {
-        return parent::install();
+        return parent::install()
+            && $this->registerHook('displayCustomerLoginFormAfter');
     }
 
     /**
@@ -69,4 +71,30 @@ class OAuthSignIn extends Module
         $route = $this->get('router')->generate('o_auth_sign_in');
         Tools::redirectAdmin($route);
     }  
+    
+    public function renderWidget($hookName, array $configuration)
+    {
+        if (!$this->isCached('module:oauthsignin/views/templates/hook/displayAfterLoginForm.tpl', 
+            $this->getCacheId())) {
+
+            $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
+        }
+        
+        return $this->fetch('module:oauthsignin/views/templates/hook/displayAfterLoginForm.tpl', $this->getCacheId());
+
+    }
+
+    public function getWidgetVariables($hookName, array $configuration)
+    {
+        // w zależności od hooka możesz zwrócić inne dane
+        return [
+            'name' => 'Adam'
+        ];
+    }
+
+    public function hookDisplayCustomerLoginFormAfter($params)
+    {
+        return $this->renderWidget('displayCustomerLoginFormAfter', $params);
+    }
+
 }

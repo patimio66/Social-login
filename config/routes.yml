@@ -2,7 +2,13 @@ o_auth_sign_in:
   path: /oauthsignin/configuration
   methods: [GET, POST]
   defaults:
-    _controller: 'PrestaShop\Module\OAuthSignIn\Controller\OAuthSignInConfigurationController::index'
+    _controller: 'PrestaShop\Module\oauthsignin\src\Controller\OAuthSignInConfigurationController::index'
     # Needed to work with tab system
     _legacy_controller: AdminOAuthSignIn
     _legacy_link: AdminOAuthSignIn
+
+google_callback:
+  path: /oauthsignin/google-callback
+  methods: [GET, POST]
+  defaults:
+    _controller: 'PrestaShop\Module\OAuthSignIn\Src\Services\GoogleLoginService'

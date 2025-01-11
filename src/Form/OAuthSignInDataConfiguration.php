@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrestaShop\Module\FirstModule\Form;
+namespace Prestashop\Module\OAuthSignIn\Form;
 
 use PrestaShop\PrestaShop\Core\Configuration\DataConfigurationInterface;
 use PrestaShop\PrestaShop\Core\ConfigurationInterface;
@@ -9,7 +9,7 @@ use PrestaShop\PrestaShop\Core\ConfigurationInterface;
 /**
  * Configuration is used to save data to configuration table and retrieve from it.
  */
-final class FirstModuleDataConfiguration implements DataConfigurationInterface
+final class OAuthSignInDataConfiguration implements DataConfigurationInterface
 {
     public const FIRST_MODULE_FORM_SIMPLE_TEXT_TYPE = 'FIRST_MODULE_FORM_SIMPLE_TEXT_TYPE';
     public const CONFIG_MAXLENGTH = 32;
