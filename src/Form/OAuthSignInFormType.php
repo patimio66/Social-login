@@ -25,7 +25,7 @@ class OAuthSignInFormType extends TranslatorAwareType
             ])
             ->add('redirect_url', TextType::class, [
                 'label' => $this->trans('Your Redirect URL', 'Modules.OAuthSignIn.Admin'),
-                'mapped' => false,
+                'mapped' => true,
                 'required' => false,
                 'disabled' => true,
             ]);

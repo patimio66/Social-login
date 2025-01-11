@@ -5,11 +5,7 @@ namespace PrestaShop\Module\OAuthSignIn\Form;
 
 use PrestaShop\PrestaShop\Core\Configuration\DataConfigurationInterface;
 use PrestaShop\PrestaShop\Core\ConfigurationInterface;
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
-use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
-use Symfony\Component\Routing\Exception\InvalidParameterException;
+use Context;
 
 /**
  * Configuration is used to save data to configuration table and retrieve from it.
@@ -25,32 +21,24 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
      */
     private $configuration;
 
-    /**
-     * @var RouterInterface
-     */
-    private $router;
-
-    public function __construct(ConfigurationInterface $configuration, RouterInterface $router)
+    public function __construct(ConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
-        $this->router = $router;
     }
 
     public function getConfiguration(): array
     {
         $return = [];
-
-        $redirectUrl = 'Niezdefiniowany URL';
-
-        try {
-            $redirectUrl = $this->router->generate('google_callback', [], UrlGeneratorInterface::ABSOLUTE_URL);
-            var_dump('redirect url = ' . $redirectUrl);
-            die;
-        } catch (RouteNotFoundException $e) {
-            var_dump('Route not found: ' . $e->getMessage());
-            die;
-        }
         
+        $context = Context::getContext();
+
+        $redirectUrl = $context->link->getModuleLink(
+            'oauthsignin',
+            'googlecallback',
+            [],
+            false
+        );
+
         $return = [ 
             'google_client_id' => $this->configuration->get(self::OAUTH_GOOGLE_CLIENT_ID),
             'google_client_secret' => $this->configuration->get(self::OAUTH_GOOGLE_CLIENT_SECRET),
