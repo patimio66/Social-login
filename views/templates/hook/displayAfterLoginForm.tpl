@@ -18,5 +18,8 @@
         </div>
         </button>
     </a>
+</div>  
+<div id="fb-root" class="my-google-btn-wrapper">
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 </div>
 <hr/>

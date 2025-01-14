@@ -24,7 +24,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-use Google_Client;
+use \Google_Client;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 class OAuthSignIn extends Module implements WidgetInterface
@@ -92,7 +92,7 @@ class OAuthSignIn extends Module implements WidgetInterface
         //funkcja getModuleLink wymusza protokół https, to chyba spowoduje potencjalne błędy jeśli strona nie ma ssl
         $redirectUrl = $this->context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
 
-        // 2) Utwórz obiekt Google_Client bez kontenera
+        // 2) Creating Google_Client object
         $client = new Google_Client();
         $client->setClientId($clientId);
         $client->setClientSecret($clientSecret);
@@ -100,7 +100,7 @@ class OAuthSignIn extends Module implements WidgetInterface
         $client->addScope('email');
         $client->addScope('profile');
 
-        // 3) Wygeneruj URL do Google
+        // 3) Generating Authorization URL
         $googleLoginUrl = $client->createAuthUrl();
 
         return [
@@ -116,11 +116,31 @@ class OAuthSignIn extends Module implements WidgetInterface
 
     public function hookHeader($params)
     {
-        // Rejestracja stylu z pliku w module
+        //$isFbEnabled = Configuration::get('OAUTH_FACEBOOK_ENABLED');
+        //if (!$isFbEnabled) {
+        //    return;
+        // }
+
+        $fbAppId = Configuration::get('OAUTH_FACEBOOK_CLIENT_ID');
+        $fbApiVersion = 'v21.0';
+
+        
+
         $this->context->controller->registerStylesheet(
-            'oauthsignin-style',                           // unikalny ID zasobu
-            'modules/'.$this->name.'/views/css/oauth.css', // ścieżka do pliku w module
+            'oauthsignin-style',
+            'modules/' . $this->name . '/views/css/oauth.css',
             [ 'media' => 'all', 'priority' => 150 ]
         );
+
+        $this->context->controller->registerJavascript(
+            'facebook-authentication',
+            'modules/' . $this->name . '/views/js/fboauth.js',
+            ['position' => 'bottom', 'priority' => 150]
+        );
+
+        Media::addJsDef([
+            'fbAppId' => $fbAppId,
+            'fbApiVersion' => $fbApiVersion
+        ]);
     }
 }
