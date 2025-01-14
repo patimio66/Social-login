@@ -24,7 +24,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
+use Google_Client;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 class OAuthSignIn extends Module implements WidgetInterface
@@ -87,12 +87,22 @@ class OAuthSignIn extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName, array $configuration)
     {
-        $container = SymfonyContainer::getInstance();
+        $clientId = Configuration::get('OAUTH_GOOGLE_CLIENT_ID');
+        $clientSecret = Configuration::get('OAUTH_GOOGLE_CLIENT_SECRET');
+        //funkcja getModuleLink wymusza protokół https, to chyba spowoduje potencjalne błędy jeśli strona nie ma ssl
+        $redirectUrl = $this->context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
 
-        $googleLoginService = $container->get('prestashop.module.oauthsignin.google_login_service');
+        // 2) Utwórz obiekt Google_Client bez kontenera
+        $client = new Google_Client();
+        $client->setClientId($clientId);
+        $client->setClientSecret($clientSecret);
+        $client->setRedirectUri($redirectUrl);
+        $client->addScope('email');
+        $client->addScope('profile');
 
-        $googleLoginUrl = $googleLoginService->getLoginUrl();
-        
+        // 3) Wygeneruj URL do Google
+        $googleLoginUrl = $client->createAuthUrl();
+
         return [
             'name' => 'Adam',
             'google_login_url' => $googleLoginUrl

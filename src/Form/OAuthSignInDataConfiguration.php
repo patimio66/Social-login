@@ -32,11 +32,12 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
         
         //generating link viewed in module back office form field
         $context = Context::getContext();
+        //funkcja getModuleLink wymusza protokół https, to spowoduje potencjalne błędy jeśli strona nie ma ssl
         $redirectUrl = $context->link->getModuleLink(
             'oauthsignin',
             'googlecallback',
             [],
-            false
+            true
         );
 
         $return = [ 
@@ -77,7 +78,6 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
             $this->configuration->set(static::OAUTH_GOOGLE_CLIENT_SECRET, $clientSecret);
         }
 
-        /* Errors are returned here. */
         return $errors;
     }
 

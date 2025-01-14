@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PrestaShop\Module\OAuthSignIn\Controller;
+namespace PrestaShop\Module\OAuthSignIn\Controllers;
 
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\HttpFoundation\Request;

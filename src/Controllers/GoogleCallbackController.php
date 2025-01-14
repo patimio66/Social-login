@@ -1,6 +1,6 @@
 <?php
 
-namespace PrestaShop\Module\OAuthSignIn\Controller;
+namespace PrestaShop\Module\OAuthSignIn\Controllers;
 
 use PrestaShop\Module\OAuthSignIn\Services\GoogleLoginService;
 use Customer;
@@ -9,7 +9,6 @@ use Tools;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route; // jeśli używasz adnotacji
 
 class GoogleCallbackController extends AbstractController
 {
@@ -20,13 +19,11 @@ class GoogleCallbackController extends AbstractController
         $this->googleLoginService = $googleLoginService;
     }
 
-    /**
-     * @Route("/oauthsignin/google/callback", name="google_callback", methods={"GET"})
-     */
     public function callback(Request $request): Response
     {
         // Google przekieruje z ?code=..., więc łapiemy
         $code = $request->query->get('code');
+        var_dump($code);
         if (!$code) {
             // Obsługa błędu lub brak parametru
             return $this->redirect('/');
