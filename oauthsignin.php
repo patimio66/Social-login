@@ -91,12 +91,12 @@ class OAuthSignIn extends Module implements WidgetInterface
 
         $clientId = Configuration::get('OAUTH_GOOGLE_CLIENT_ID');
         $clientSecret = Configuration::get('OAUTH_GOOGLE_CLIENT_SECRET');
-        $googleCallbackUrl = $this->context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
+        $googleRedirectUrl = $this->context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
 
         $client = new Google_Client();
         $client->setClientId($clientId);
         $client->setClientSecret($clientSecret);
-        $client->setRedirectUri($googleCallbackUrl);
+        $client->setRedirectUri($googleRedirectUrl);
         $client->addScope('email');
         $client->addScope('profile');
 
@@ -124,7 +124,7 @@ class OAuthSignIn extends Module implements WidgetInterface
 
         $fbAppId = Configuration::get('OAUTH_FACEBOOK_APP_ID');
         $fbApiVersion = 'v21.0';
-        $fbCallbackUrl = $this->context->link->getModuleLink('oauthsignin', 'facebookcallback', [], true);
+        $fbRedirectkUrl = $this->context->link->getModuleLink('oauthsignin', 'facebookcallback', [], true);
 
         $this->context->controller->registerStylesheet(
             'oauthsignin-style',
@@ -141,7 +141,15 @@ class OAuthSignIn extends Module implements WidgetInterface
         Media::addJsDef([
             'fbAppId' => $fbAppId,
             'fbApiVersion' => $fbApiVersion,
-            'fbCallbackUrl' => $fbCallbackUrl
+            'fbRedirectUrl' => $fbRedirectkUrl,
+            'translateFB'       => [
+            'notAuthorized' => $this->trans('User did not authorize the application',
+                                            [],
+                                            'Modules.Oauthsignin.Facebookcallback'),
+            'unknownError'  => $this->trans('Unknown error, please try again',
+                                            [],
+                                            'Modules.Oauthsignin.Facebookcallback')
+    ]
         ]);
     }
 }

@@ -15,21 +15,22 @@ class OAuthSignInFormType extends TranslatorAwareType
     {
         $builder
             ->add('enable_google', SwitchType::class, [
-            'label' => $this->trans('Enable "Sign in with Google" button', 'Modules.OAuthSignIn.Admin'),
-            'required' => false,
+                'label' => $this->trans('Enable "Sign in with Google" button', 'Modules.OAuthSignIn.Admin'),
+                'required' => false,
             ])
             ->add('google_client_id', TextType::class, [
-            'label' => $this->trans('Google Client ID', 'Modules.OAuthSignIn.Admin'),
-            'help' => $this->trans('Maximum 255 characters', 'Modules.OAuthSignIn.Admin'),
-            'required' => false,
+                'label' => $this->trans('Google Client ID', 'Modules.OAuthSignIn.Admin'),
+                'help' => $this->trans('Maximum 255 characters', 'Modules.OAuthSignIn.Admin'),
+                'required' => false,
             ])
             ->add('google_client_secret', TextType::class, [
                 'label' => $this->trans('Google Client Secret', 'Modules.OAuthSignIn.Admin'),
                 'help' => $this->trans('Maximum 255 characters', 'Modules.OAuthSignIn.Admin'),
                 'required' => false,    
             ])
-            ->add('redirect_url', TextType::class, [
-                'label' => $this->trans('Use this redirect URL in Google Cloud Platform', 'Modules.OAuthSignIn.Admin'),
+            ->add('google_redirect_url', TextType::class, [
+                'label' => $this->trans('Your redirect URL', 'Modules.OAuthSignIn.Admin'),
+                'help' => $this->trans('Use this in Google Cloud Platform website', 'Modules.OAuthSignIn.Admin'),
                 'mapped' => true,
                 'required' => false,
                 'disabled' => true,
@@ -41,6 +42,13 @@ class OAuthSignInFormType extends TranslatorAwareType
             ->add('fb_app_id', TextType::class, [
                 'label' => $this->trans('Facebook App ID', 'Modules.OAuthSignIn.Admin'),
                 'required' => false,
+            ])
+            ->add('fb_redirect_url', TextType::class, [
+                'label' => $this->trans('Your redirect URL', 'Modules.OAuthSignIn.Admin'),
+                'help' => $this->trans('Use this in Meta for Developers website', 'Modules.OAuthSignIn.Admin'),
+                'mapped' => true,
+                'required' => false,
+                'disabled' => true,
             ]);
     }
 }

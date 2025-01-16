@@ -17,7 +17,7 @@ class OAuthSignInGoogleCallbackModuleFrontController extends ModuleFrontControll
         $clientSecret = Configuration::get('OAUTH_GOOGLE_CLIENT_SECRET');
         $redirectUrl = $this->context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
     
-        $client = new \Google_Client();
+        $client = new Google_Client();
         $client->setClientId($clientId);
         $client->setClientSecret($clientSecret);
         $client->setRedirectUri($redirectUrl);
@@ -37,17 +37,17 @@ class OAuthSignInGoogleCallbackModuleFrontController extends ModuleFrontControll
 
         // Searching for existing Customer or creating new one
         $userEmail = $googleUser->email;
-        $customer = new \Customer();
+        $customer = new Customer();
         $existingCustomerId = $customer->customerExists($userEmail, true, true);
 
         if (!$existingCustomerId) {
-            $customer->firstname = $googleUser->given_name ?? 'Uzupełnij imię';
-            $customer->lastname = $googleUser->family_name ?? 'Uzupełnij nazwisko';
+            $customer->firstname = $googleUser->given_name ?? 'Imię';
+            $customer->lastname = $googleUser->family_name ?? 'Nazwisko';
             $customer->email = $userEmail;
-            $customer->passwd = \Tools::hash(\Tools::passwdGen(12));
+            $customer->passwd = Tools::hash(Tools::passwdGen(12));
             $customer->add();
         } else {
-            $customer = new \Customer($existingCustomerId);
+            $customer = new Customer($existingCustomerId);
         }
 
         // User login

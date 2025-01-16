@@ -5,6 +5,7 @@ namespace PrestaShop\Module\OAuthSignIn\Form;
 
 use PrestaShop\PrestaShop\Core\Configuration\DataConfigurationInterface;
 use PrestaShop\PrestaShop\Core\ConfigurationInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Context;
 
 /**
@@ -26,9 +27,15 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
      */
     private $configuration;
 
-    public function __construct(ConfigurationInterface $configuration)
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    public function __construct(ConfigurationInterface $configuration, TranslatorInterface $translator)
     {
         $this->configuration = $configuration;
+        $this->translator = $translator;
     }
 
     public function getConfiguration(): array
@@ -38,20 +45,17 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
         //generating link viewed in module back office form field
         $context = Context::getContext();
         //funkcja getModuleLink wymusza protokół https, to spowoduje potencjalne błędy jeśli strona nie ma ssl
-        $redirectUrl = $context->link->getModuleLink(
-            'oauthsignin',
-            'googlecallback',
-            [],
-            true
-        );
+        $googleRedirectUrl = $context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
+        $facebookRedirectUrl = $context->link->getModuleLink('oauthsignin', 'facebookcallback', [], true);
 
         $return = [
             'enable_google' => $this->configuration->get(self::OAUTH_GOOGLE_ENABLED),
             'google_client_id' => $this->configuration->get(self::OAUTH_GOOGLE_CLIENT_ID),
             'google_client_secret' => $this->configuration->get(self::OAUTH_GOOGLE_CLIENT_SECRET),
-            'redirect_url' => $redirectUrl,
+            'google_redirect_url' => $googleRedirectUrl,
             'enable_facebook' => $this->configuration->get(self::OAUTH_FACEBOOK_ENABLED),
-            'fb_app_id' => $this->configuration->get(self::OAUTH_FACEBOOK_APP_ID)
+            'fb_app_id' => $this->configuration->get(self::OAUTH_FACEBOOK_APP_ID),
+            'fb_redirect_url' => $facebookRedirectUrl
         ];
 
         return $return;
@@ -98,7 +102,7 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
             $fbAppId = trim($configuration['fb_app_id'] ?? '');
             
             if (empty($fbAppId)) {
-                $errors[] = 'Facebook App ID cannot be empty.';
+                $errors[] = $this->translator->trans('Facebook App ID cannot be empty.', [], 'Modules.Oauthsignin.DataConfiguration');
             } elseif (strlen($fbAppId) > self::CONFIG_MAXLENGTH) {
                 $errors[] = 'Facebook App ID is too long.';
             }
