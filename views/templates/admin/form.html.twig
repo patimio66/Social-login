@@ -4,20 +4,32 @@
   {{ form_start(oAuthSignInConfigurationForm) }}
   <div class="card">
     <h3 class="card-header">
-      <i class="material-icons">settings</i> {{ 'Google API configuration'|trans({}, 'Modules.FirstModule.Admin') }}
+      <i class="material-icons">settings</i> {{ 'Google configuration'|trans({}, 'Modules.OAuthSignIn.Admin') }}
     </h3>
-    <div class="card-body">
-      <div class="form-wrapper">
-        {{ form_widget(oAuthSignInConfigurationForm) }}
+      <div class="card-body">
+        <div class="form-wrapper">
+          {{ form_row(oAuthSignInConfigurationForm.enable_google) }}
+          {{ form_row(oAuthSignInConfigurationForm.google_client_id) }}
+          {{ form_row(oAuthSignInConfigurationForm.google_client_secret) }}
+          {{ form_row(oAuthSignInConfigurationForm.redirect_url) }}
+        </div>
       </div>
-    </div>
-    <div class="card-footer">
-      <div class="d-flex justify-content-end">
-        <button class="btn btn-primary float-right" id="save-button">
-          {{ 'Save'|trans({}, 'Admin.Actions') }}
-        </button>
+    <h3 class="card-header">
+      <i class="material-icons">settings</i> {{ 'Facebook configuration'|trans({}, 'Modules.OAuthSignIn.Admin') }}
+    </h3>
+      <div class="card-body">
+          <div class="form-wrapper">
+            {{ form_row(oAuthSignInConfigurationForm.enable_facebook) }}
+            {{ form_row(oAuthSignInConfigurationForm.fb_app_id) }}
+          </div>
       </div>
-    </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary float-right" id="save-button">
+            {{ 'Save'|trans({}, 'Admin.Actions') }}
+          </button>
+        </div>
+      </div>
   </div>
   {{ form_end(oAuthSignInConfigurationForm) }}
 {% endblock %}

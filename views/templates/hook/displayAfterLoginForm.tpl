@@ -1,4 +1,5 @@
 {* displayAfterLoginForm.tpl *}
+{if $enable_google == true}
 <div class="my-google-btn-wrapper">
     <a href="{$google_login_url}">
         <button class="gsi-material-button">
@@ -18,8 +19,11 @@
         </div>
         </button>
     </a>
-</div>  
+</div>
+{/if}
+{if $enable_facebook == true}
 <div id="fb-root" class="my-google-btn-wrapper">
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 </div>
+{/if}
 <hr/>

@@ -24,7 +24,6 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-use \Google_Client;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 class OAuthSignIn extends Module implements WidgetInterface
@@ -87,25 +86,27 @@ class OAuthSignIn extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName, array $configuration)
     {
+        $enableGoogle = Configuration::get('OAUTH_GOOGLE_ENABLED');
+        $enableFacebook = Configuration::get('OAUTH_FACEBOOK_ENABLED');
+
         $clientId = Configuration::get('OAUTH_GOOGLE_CLIENT_ID');
         $clientSecret = Configuration::get('OAUTH_GOOGLE_CLIENT_SECRET');
-        //funkcja getModuleLink wymusza protokół https, to chyba spowoduje potencjalne błędy jeśli strona nie ma ssl
-        $redirectUrl = $this->context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
+        $googleCallbackUrl = $this->context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
 
-        // 2) Creating Google_Client object
         $client = new Google_Client();
         $client->setClientId($clientId);
         $client->setClientSecret($clientSecret);
-        $client->setRedirectUri($redirectUrl);
+        $client->setRedirectUri($googleCallbackUrl);
         $client->addScope('email');
         $client->addScope('profile');
 
-        // 3) Generating Authorization URL
+        // Generating authorization URL linked to Google button in .tpl file
         $googleLoginUrl = $client->createAuthUrl();
 
         return [
-            'name' => 'Adam',
-            'google_login_url' => $googleLoginUrl
+            'google_login_url' => $googleLoginUrl,
+            'enable_google' => $enableGoogle,
+            'enable_facebook' => $enableFacebook
         ];
     }
 
@@ -121,10 +122,9 @@ class OAuthSignIn extends Module implements WidgetInterface
         //    return;
         // }
 
-        $fbAppId = Configuration::get('OAUTH_FACEBOOK_CLIENT_ID');
+        $fbAppId = Configuration::get('OAUTH_FACEBOOK_APP_ID');
         $fbApiVersion = 'v21.0';
-
-        
+        $fbCallbackUrl = $this->context->link->getModuleLink('oauthsignin', 'facebookcallback', [], true);
 
         $this->context->controller->registerStylesheet(
             'oauthsignin-style',
@@ -140,7 +140,8 @@ class OAuthSignIn extends Module implements WidgetInterface
 
         Media::addJsDef([
             'fbAppId' => $fbAppId,
-            'fbApiVersion' => $fbApiVersion
+            'fbApiVersion' => $fbApiVersion,
+            'fbCallbackUrl' => $fbCallbackUrl
         ]);
     }
 }
