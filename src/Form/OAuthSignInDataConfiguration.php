@@ -78,15 +78,15 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
             $googleClientSecret = trim($configuration['google_client_secret'] ?? '');
 
             if (empty($googleClientId)) {
-                $errors[] = 'Google Client ID cannot be empty.';
+                $errors[] = $this->translator->trans('Google Client ID cannot be empty', [], 'Modules.Oauthsignin.Admin');
             } elseif (strlen($googleClientId) > self::CONFIG_MAXLENGTH) {
-                $errors[] = 'Google Client ID is too long.';
+                $errors[] = $this->translator->trans('Google Client ID is too long', [], 'Modules.Oauthsignin.Admin');
             }
 
             if (empty($googleClientSecret)) {
-                $errors[] = 'Google Client Secret cannot be empty.';
+                $errors[] = $this->translator->trans('Google Client Secret cannot be empty', [], 'Modules.Oauthsignin.Admin');
             } elseif (strlen($googleClientSecret) > self::CONFIG_MAXLENGTH) {
-                $errors[] = 'Google Client Secret is too long.';
+                $errors[] = $this->translator->trans('Google Client Secret is too long', [], 'Modules.Oauthsignin.Admin');
             }
         
             if (empty($errors)) {
@@ -102,9 +102,9 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
             $fbAppId = trim($configuration['fb_app_id'] ?? '');
             
             if (empty($fbAppId)) {
-                $errors[] = $this->translator->trans('Facebook App ID cannot be empty.', [], 'Modules.Oauthsignin.DataConfiguration');
+                $errors[] = $this->translator->trans('Facebook App ID cannot be empty', [], 'Modules.Oauthsignin.Admin');
             } elseif (strlen($fbAppId) > self::CONFIG_MAXLENGTH) {
-                $errors[] = 'Facebook App ID is too long.';
+                $errors[] = $this->translator->trans('Facebook App ID is too long', [], 'Modules.Oauthsignin.Admin');
             }
         
 

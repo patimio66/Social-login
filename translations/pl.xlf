@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+  <file source-language="en" target-language="pl" datatype="plaintext" original="Modules.OAuthSignIn.Admin">
+    <body>
+      <trans-unit id="Facebook App ID cannot be empty.">
+        <source>Facebook App ID cannot be empty.</source>
+        <target>Pole Facebook App ID nie może być puste.</target>
+      </trans-unit>
+      <trans-unit id="Enable &quot;Sign in with Google&quot; button">
+        <source>Enable "Sign in with Google" button</source>
+        <target>Włącz przycisk "Zaloguj się z Google"</target>
+      </trans-unit>
+      <trans-unit id="Google Client ID">
+        <source>Google Client ID</source>
+        <target>Google Client ID</target>
+      </trans-unit>
+      <trans-unit id="Maximum 255 characters">
+        <source>Maximum 255 characters</source>
+        <target>Maksymalnie 255 znaków</target>
+      </trans-unit>
+      <trans-unit id="Google Client Secret">
+        <source>Google Client Secret</source>
+        <target>Google Client Secret</target>
+      </trans-unit>
+      <trans-unit id="Your redirect URL">
+        <source>Your redirect URL</source>
+        <target>Twój URL przekierowania</target>
+      </trans-unit>
+      <trans-unit id="Use this in Google Cloud Platform website">
+        <source>Use this in Google Cloud Platform website</source>
+        <target>Użyj tego na stronie Google Cloud Platform</target>
+      </trans-unit>
+      <trans-unit id="Enable &quot;Sign in with Facebook&quot; button">
+        <source>Enable "Sign in with Facebook" button</source>
+        <target>Włącz przycisk "Zaloguj się z Facebook"</target>
+      </trans-unit>
+      <trans-unit id="Facebook App ID">
+        <source>Facebook App ID</source>
+        <target>Facebook App ID</target>
+      </trans-unit>
+      <trans-unit id="Use this in Meta for Developers website">
+        <source>Use this in Meta for Developers website</source>
+        <target>Użyj tego na stronie Meta for Developers</target>
+      </trans-unit>
+      <trans-unit id="Google configuration">
+        <source>Google configuration</source>
+        <target>Konfiguracja Google</target>
+      </trans-unit>
+      <trans-unit id="Facebook configuration">
+        <source>Facebook configuration</source>
+        <target>Konfiguracja Facebooka</target>
+      </trans-unit>
+      <trans-unit id="Save">
+        <source>Save</source>
+        <target>Zapisz</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

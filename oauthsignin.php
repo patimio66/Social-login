@@ -38,8 +38,12 @@ class OAuthSignIn extends Module implements WidgetInterface
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = 'OAuth2 Sign In Module';
-        $this->description = 'Module provides users sign in with Google or Apple';
+        $this->displayName = $this->trans('OAuth2 Sign In Module',
+        [],
+        'Modules.Oauthsignin.Oauthsignin');
+        $this->description = $this->trans('Module provides users sign in with Google or Apple',
+        [],
+        'Modules.Oauthsignin.Oauthsignin');
         $this->confirmUninstall = '';
     
         $this->ps_versions_compliancy = [
@@ -72,6 +76,11 @@ class OAuthSignIn extends Module implements WidgetInterface
         Tools::redirectAdmin($route);
     }  
     
+    public function isUsingNewTranslationSystem()
+    {
+    return true;
+    }
+
     public function renderWidget($hookName, array $configuration)
     {
         if (!$this->isCached('module:oauthsignin/views/templates/hook/displayAfterLoginForm.tpl', 
@@ -124,7 +133,7 @@ class OAuthSignIn extends Module implements WidgetInterface
 
         $fbAppId = Configuration::get('OAUTH_FACEBOOK_APP_ID');
         $fbApiVersion = 'v21.0';
-        $fbRedirectkUrl = $this->context->link->getModuleLink('oauthsignin', 'facebookcallback', [], true);
+        $fbRedirectkUrl = $this->context->link->getModuleLink('oauthsignin', 'Oauthsignin.php', [], true);
 
         $this->context->controller->registerStylesheet(
             'oauthsignin-style',
@@ -144,11 +153,11 @@ class OAuthSignIn extends Module implements WidgetInterface
             'fbRedirectUrl' => $fbRedirectkUrl,
             'translateFB'       => [
             'notAuthorized' => $this->trans('User did not authorize the application',
-                                            [],
-                                            'Modules.Oauthsignin.Facebookcallback'),
+            [],
+            'Modules.Oauthsignin.Oauthsignin'),
             'unknownError'  => $this->trans('Unknown error, please try again',
-                                            [],
-                                            'Modules.Oauthsignin.Facebookcallback')
+            [],
+            'Modules.Oauthsignin.Oauthsignin')
     ]
         ]);
     }
