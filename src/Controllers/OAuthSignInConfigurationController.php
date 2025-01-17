@@ -22,7 +22,7 @@ class OAuthSignInConfigurationController extends FrameworkBundleAdminController
             $errors = $textFormDataHandler->save($textForm->getData());
 
             if (empty($errors)) {
-                $this->addFlash('success', $this->trans('Successful update.', 'Modules.Oauthsignin.Admin', []));
+                $this->addFlash('success', $this->trans('Successful update', 'Modules.Oauthsignin.Admin', []));
 
                 return $this->redirectToRoute('o_auth_sign_in');
             }
