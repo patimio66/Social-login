@@ -63,17 +63,47 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
 
     public function updateConfiguration(array $configuration): array
     {
-        $errors = []; 
+        $errors = $this->validateConfiguration($configuration);
 
-        /* if (!$this->validateConfiguration($configuration)) {
-            $errors[] = 'Google Client ID and Google Secret must not be empty.';
+        if (!empty($errors)) {
             return $errors;
-        } */
+        }
 
         $enableGoogle = isset($configuration['enable_google']) && (bool)($configuration['enable_google']);
         $enableFacebook = isset($configuration['enable_facebook']) && (bool)($configuration['enable_facebook']);
 
+        // Google
+        $this->configuration->set(self::OAUTH_GOOGLE_ENABLED, $enableGoogle);
         if ($enableGoogle){
+            $googleClientId = trim($configuration['google_client_id'] ?? '');
+            $googleClientSecret = trim($configuration['google_client_secret'] ?? '');
+            $this->configuration->set(self::OAUTH_GOOGLE_CLIENT_ID, $googleClientId);
+            $this->configuration->set(self::OAUTH_GOOGLE_CLIENT_SECRET, $googleClientSecret);
+        }
+            
+        // Facebook
+        $this->configuration->set(self::OAUTH_FACEBOOK_ENABLED, $enableFacebook);
+        if ($enableFacebook) {
+            $fbAppId = trim($configuration['fb_app_id'] ?? '');
+            $this->configuration->set(self::OAUTH_FACEBOOK_APP_ID, $fbAppId);
+        }
+
+        return [];
+    }
+
+    /**
+     * Ensure the parameters passed are valid.
+     *
+     * @return bool Returns true if no exception are thrown
+     */
+    public function validateConfiguration(array $configuration): array
+    {
+        $errors = [];
+
+        $enableGoogle = isset($configuration['enable_google']) && (bool)($configuration['enable_google']);
+        $enableFacebook = isset($configuration['enable_facebook']) && (bool)($configuration['enable_facebook']);
+
+        if ($enableGoogle) {
             $googleClientId = trim($configuration['google_client_id'] ?? '');
             $googleClientSecret = trim($configuration['google_client_secret'] ?? '');
 
@@ -88,45 +118,17 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
             } elseif (strlen($googleClientSecret) > self::CONFIG_MAXLENGTH) {
                 $errors[] = $this->translator->trans('Google Client Secret is too long', [], 'Modules.Oauthsignin.Admin');
             }
-        
-            if (empty($errors)) {
-                $this->configuration->set(self::OAUTH_GOOGLE_CLIENT_ID, $googleClientId);
-                $this->configuration->set(self::OAUTH_GOOGLE_CLIENT_SECRET, $googleClientSecret);
-                $this->configuration->set(self::OAUTH_GOOGLE_ENABLED, true);
-            } 
-        } else {
-            $this->configuration->set(self::OAUTH_GOOGLE_ENABLED, false);
         }
-            
-        if ($enableFacebook){
+
+        if ($enableFacebook) {
             $fbAppId = trim($configuration['fb_app_id'] ?? '');
-            
             if (empty($fbAppId)) {
                 $errors[] = $this->translator->trans('Facebook App ID cannot be empty', [], 'Modules.Oauthsignin.Admin');
             } elseif (strlen($fbAppId) > self::CONFIG_MAXLENGTH) {
                 $errors[] = $this->translator->trans('Facebook App ID is too long', [], 'Modules.Oauthsignin.Admin');
             }
-        
-
-            if (empty($errors)) {
-                $this->configuration->set(self::OAUTH_FACEBOOK_APP_ID, $fbAppId);
-                $this->configuration->set(self::OAUTH_FACEBOOK_ENABLED, true);
-            // $this->configuration->set(self::OAUTH_GOOGLE_CLIENT_SECRET, $fbClientSecret);
-            }
-        } else {
-            $this->configuration->set(self::OAUTH_FACEBOOK_ENABLED, false);
         }
-
         return $errors;
     }
 
-    /**
-     * Ensure the parameters passed are valid.
-     *
-     * @return bool Returns true if no exception are thrown
-     */
-    public function validateConfiguration(array $configuration): bool
-    {
-        return isset($configuration['google_client_id']) && isset($configuration['google_client_secret']);
-    }
 }
