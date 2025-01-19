@@ -12,7 +12,7 @@ Dzięki temu rozwiązaniu proces logowania staje się szybszy i bardziej intuicy
 ## Pobierz moduł
 
 Pobierz moduł:
-[📦 Social Login (.zip)](https://github.com/TWÓJ_UŻYTKOWNIK/TWÓJE_REPOZYTORIUM/releases/download/v1.0.0/nazwa_pliku.zip)
+[📦 Social Login (.zip)](https://github.com/Maniek247/oauthsignin/releases/download/Prestashop/oauthsignin.zip)
 
 
 © 2025 Maniek247 – Wszystkie prawa zastrzeżone.
