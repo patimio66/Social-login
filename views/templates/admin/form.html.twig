@@ -3,9 +3,9 @@
 {% block content %}
   {{ form_start(oAuthSignInConfigurationForm) }}
   <div class="card">
-    <h3 class="card-header">
-      <i class="material-icons">settings</i> {{ 'Google configuration'|trans({}, 'Modules.OAuthSignIn.Admin') }}
-    </h3>
+    <h2 class="card-header">
+      <i class="material-icons">settings</i> {{ 'Google configuration'|trans({}, 'Modules.Oauthsignin.Admin') }}
+    </h2>
       <div class="card-body">
         <div class="form-wrapper">
           {{ form_row(oAuthSignInConfigurationForm.enable_google) }}
@@ -13,15 +13,29 @@
           {{ form_row(oAuthSignInConfigurationForm.google_client_secret) }}
           {{ form_row(oAuthSignInConfigurationForm.google_redirect_url) }}
         </div>
+      <h3 class="card-header">
+        <i class="material-icons">settings</i> {{ 'Google button style'|trans({}, 'Modules.Oauthsignin.Admin') }}
+      </h3>
+        <div class="form-wrapper">
+          {{ form_row(oAuthSignInConfigurationForm.google_btn_shape) }}
+          {{ form_row(oAuthSignInConfigurationForm.google_btn_theme) }}
+        </div>
       </div>
-    <h3 class="card-header">
-      <i class="material-icons">settings</i> {{ 'Facebook configuration'|trans({}, 'Modules.OAuthSignIn.Admin') }}
-    </h3>
+    <h2 class="card-header">
+      <i class="material-icons">settings</i> {{ 'Facebook configuration'|trans({}, 'Modules.Oauthsignin.Admin') }}
+    </h2>
       <div class="card-body">
           <div class="form-wrapper">
             {{ form_row(oAuthSignInConfigurationForm.enable_facebook) }}
             {{ form_row(oAuthSignInConfigurationForm.fb_app_id) }}
+            {{ form_row(oAuthSignInConfigurationForm.fb_api_version) }}
             {{ form_row(oAuthSignInConfigurationForm.fb_redirect_url) }}
+          </div>
+        <h3 class="card-header">
+          <i class="material-icons">settings</i> {{ 'Facebook button style'|trans({}, 'Modules.Oauthsignin.Admin') }}
+        </h3>
+          <div class="form-wrapper">
+            {{ form_row(oAuthSignInConfigurationForm.fb_btn_shape) }}
           </div>
       </div>
       <div class="card-footer">

@@ -3,7 +3,7 @@
         'name' => 'prestashop/oauthsignin',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '3e4c01d2bedebd9cb862a51850a7b031dd600154',
+        'reference' => '67da80a1953416c7cd0c33b7d50ea3541c1e4458',
         'type' => 'prestashop-module',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'google/apiclient-services' => array(
-            'pretty_version' => 'v0.389.0',
-            'version' => '0.389.0.0',
-            'reference' => '6274e67ee52b1a416ccee0a4eaf337d1139cdaf8',
+            'pretty_version' => 'v0.390.0',
+            'version' => '0.390.0.0',
+            'reference' => '2c1ff37aea15dd9e7a434c4fcbec777d9421385c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../google/apiclient-services',
             'aliases' => array(),
@@ -74,9 +74,9 @@
             'dev_requirement' => false,
         ),
         'monolog/monolog' => array(
-            'pretty_version' => '3.8.1',
-            'version' => '3.8.1.0',
-            'reference' => 'aef6ee73a77a66e404dd6540934a9ef1b3c855b4',
+            'pretty_version' => '2.10.0',
+            'version' => '2.10.0.0',
+            'reference' => '5cf826f2991858b54d5c3809bee745560a1042a7',
             'type' => 'library',
             'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
@@ -112,7 +112,7 @@
         'prestashop/oauthsignin' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '3e4c01d2bedebd9cb862a51850a7b031dd600154',
+            'reference' => '67da80a1953416c7cd0c33b7d50ea3541c1e4458',
             'type' => 'prestashop-module',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -184,7 +184,7 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
             ),
         ),
         'ralouphie/getallheaders' => array(
@@ -197,9 +197,9 @@
             'dev_requirement' => false,
         ),
         'symfony/deprecation-contracts' => array(
-            'pretty_version' => 'v3.5.1',
-            'version' => '3.5.1.0',
-            'reference' => '74c71c939a79f7d5bf3c1ce9f5ea37ba0114c6f6',
+            'pretty_version' => 'v2.5.4',
+            'version' => '2.5.4.0',
+            'reference' => '605389f2a7e5625f273b53960dc46aeaf9c62918',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
             'aliases' => array(),

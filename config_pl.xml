@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
-    <name>firstmodule</name>
-    <displayName><![CDATA[First Module]]></displayName>
+    <name>oauthsignin</name>
+    <displayName><![CDATA[Social Login]]></displayName>
     <version><![CDATA[1.0]]></version>
-    <description><![CDATA[First Module ever]]></description>
-    <author><![CDATA[Adam]]></author>
+    <description><![CDATA[Module enabling quick login via popular providers like Google or Facebook]]></description>
+    <author><![CDATA[Adam Mańko]]></author>
     <tab><![CDATA[]]></tab>
 	<confirmUninstall><![CDATA[Are you sure to uninstall?]]></confirmUninstall>
     <is_configurable>1</is_configurable>

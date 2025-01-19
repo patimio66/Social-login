@@ -38,10 +38,9 @@ class OAuthSignIn extends Module implements WidgetInterface
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->trans('OAuth2 Sign In Module',
-        [],
-        'Modules.Oauthsignin.Oauthsignin');
-        $this->description = $this->trans('Module provides users sign in with Google or Apple',
+        $this->displayName = $this->trans('Social login', [], 'Modules.Oauthsignin.Oauthsignin');
+        $this->description = $this->trans(
+        'Module enabling quick login via popular providers like Google or Facebook',
         [],
         'Modules.Oauthsignin.Oauthsignin');
         $this->confirmUninstall = '';
@@ -95,8 +94,16 @@ class OAuthSignIn extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName, array $configuration)
     {
+        $googleBtnShape = Configuration::get('OAUTH_GOOGLE_BUTTON_SHAPE');
+        $googleBtnTheme = Configuration::get('OAUTH_GOOGLE_BUTTON_THEME');
+        $fbBtnShape = Configuration::get('OAUTH_FACEBOOK_BUTTON_SHAPE');
+
         $enableGoogle = Configuration::get('OAUTH_GOOGLE_ENABLED');
         $enableFacebook = Configuration::get('OAUTH_FACEBOOK_ENABLED');
+        $googleBtnText = $this->trans(
+        'Sign in with Google',
+        [],
+        'Modules.Oauthsignin.Oauthsignin');
 
         $clientId = Configuration::get('OAUTH_GOOGLE_CLIENT_ID');
         $clientSecret = Configuration::get('OAUTH_GOOGLE_CLIENT_SECRET');
@@ -115,7 +122,11 @@ class OAuthSignIn extends Module implements WidgetInterface
         return [
             'google_login_url' => $googleLoginUrl,
             'enable_google' => $enableGoogle,
-            'enable_facebook' => $enableFacebook
+            'google_btn_text' => $googleBtnText,
+            'google_btn_shape' => $googleBtnShape,
+            'google_btn_theme' => $googleBtnTheme,
+            'enable_facebook' => $enableFacebook,
+            'fb_btn_shape' => $fbBtnShape
         ];
     }
 
@@ -126,14 +137,15 @@ class OAuthSignIn extends Module implements WidgetInterface
 
     public function hookHeader($params)
     {
-        //$isFbEnabled = Configuration::get('OAUTH_FACEBOOK_ENABLED');
-        //if (!$isFbEnabled) {
-        //    return;
-        // }
-
         $fbAppId = Configuration::get('OAUTH_FACEBOOK_APP_ID');
-        $fbApiVersion = 'v21.0';
-        $fbRedirectkUrl = $this->context->link->getModuleLink('oauthsignin', 'Oauthsignin.php', [], true);
+        $fbApiVersion = Configuration::get('OAUTH_FACEBOOK_API_VERSION');
+        $fbRedirectUrl = $this->context->link->getModuleLink('oauthsignin', 'facebookcallback', [], true);
+
+        $context = Context::getContext();
+        $idLang = $context->language->id;
+        $language = new Language($idLang);
+        $localLang = $language->getLocale();
+        $localLang = str_replace('-', '_', $localLang);
 
         $this->context->controller->registerStylesheet(
             'oauthsignin-style',
@@ -142,23 +154,35 @@ class OAuthSignIn extends Module implements WidgetInterface
         );
 
         $this->context->controller->registerJavascript(
+            'facebook-jssdk',
+            'https://connect.facebook.net/' . $localLang . '/sdk.js#xfbml=1&version=' . $fbApiVersion . '&appId=' . $fbAppId,
+            [
+                'server' => 'remote',
+                'position' => 'bottom',
+                'priority' => 150,
+                'attributes' => 'async defer crossorigin="anonymous"',
+            ]
+        );
+
+        $this->context->controller->registerJavascript(
             'facebook-authentication',
             'modules/' . $this->name . '/views/js/fboauth.js',
-            ['position' => 'bottom', 'priority' => 150]
+            ['position' => 'bottom', 'priority' => 200]
         );
 
         Media::addJsDef([
             'fbAppId' => $fbAppId,
             'fbApiVersion' => $fbApiVersion,
-            'fbRedirectUrl' => $fbRedirectkUrl,
+            'fbRedirectUrl' => $fbRedirectUrl,
             'translateFB'       => [
-            'notAuthorized' => $this->trans('User did not authorize the application',
+            'notAuthorized' => $this->trans(
+            'User did not authorize the application',
             [],
             'Modules.Oauthsignin.Oauthsignin'),
-            'unknownError'  => $this->trans('Unknown error, please try again',
+            'unknownError'  => $this->trans(
+            'Unknown error, please try again',
             [],
-            'Modules.Oauthsignin.Oauthsignin')
-    ]
+            'Modules.Oauthsignin.Oauthsignin')]
         ]);
     }
 }

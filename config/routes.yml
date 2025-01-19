@@ -6,9 +6,3 @@ o_auth_sign_in:
     # Needed to work with tab system
     _legacy_controller: AdminOAuthSignIn
     _legacy_link: AdminOAuthSignIn
-
-#google_callback:
-#  path: /oauthsignin/googlecallback
-#  methods: [GET, POST]
-#  defaults:
-#    _controller: 'PrestaShop\Module\OAuthSignIn\Controllers\GoogleCallbackController::callback'

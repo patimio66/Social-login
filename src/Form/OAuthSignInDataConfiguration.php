@@ -16,11 +16,16 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
     public const OAUTH_GOOGLE_ENABLED = 'OAUTH_GOOGLE_ENABLED';
     public const OAUTH_GOOGLE_CLIENT_ID = 'OAUTH_GOOGLE_CLIENT_ID';
     public const OAUTH_GOOGLE_CLIENT_SECRET = 'OAUTH_GOOGLE_CLIENT_SECRET';
+    public const OAUTH_GOOGLE_BUTTON_SHAPE = 'OAUTH_GOOGLE_BUTTON_SHAPE';
+    public const OAUTH_GOOGLE_BUTTON_THEME = 'OAUTH_GOOGLE_BUTTON_THEME';
 
     public const OAUTH_FACEBOOK_ENABLED = 'OAUTH_FACEBOOK_ENABLED';
     public const OAUTH_FACEBOOK_APP_ID = 'OAUTH_FACEBOOK_APP_ID';
-    // public const OAUTH_FACEBOOK_CLIENT_SECRET = 'OAUTH_FACEBOOK_CLIENT_SECRET';
+    public const OAUTH_FACEBOOK_API_VERSION = 'OAUTH_FACEBOOK_API_VERSION';
+    public const OAUTH_FACEBOOK_BUTTON_SHAPE = 'OAUTH_FACEBOOK_BUTTON_SHAPE';
+
     public const CONFIG_MAXLENGTH = 255;
+    public const CONFIG_API_MAXLENGTH = 10;
 
     /**
      * @var ConfigurationInterface
@@ -42,9 +47,8 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
     {
         $return = [];
         
-        //generating link viewed in module back office form field
+        //generating redirect link viewed in module back office form field
         $context = Context::getContext();
-        //funkcja getModuleLink wymusza protokół https, to spowoduje potencjalne błędy jeśli strona nie ma ssl
         $googleRedirectUrl = $context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
         $facebookRedirectUrl = $context->link->getModuleLink('oauthsignin', 'facebookcallback', [], true);
 
@@ -52,9 +56,13 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
             'enable_google' => $this->configuration->get(self::OAUTH_GOOGLE_ENABLED),
             'google_client_id' => $this->configuration->get(self::OAUTH_GOOGLE_CLIENT_ID),
             'google_client_secret' => $this->configuration->get(self::OAUTH_GOOGLE_CLIENT_SECRET),
+            'google_btn_shape' => $this->configuration->get(self::OAUTH_GOOGLE_BUTTON_SHAPE),
+            'google_btn_theme' => $this->configuration->get(self::OAUTH_GOOGLE_BUTTON_THEME),
             'google_redirect_url' => $googleRedirectUrl,
             'enable_facebook' => $this->configuration->get(self::OAUTH_FACEBOOK_ENABLED),
             'fb_app_id' => $this->configuration->get(self::OAUTH_FACEBOOK_APP_ID),
+            'fb_api_version' => $this->configuration->get(self::OAUTH_FACEBOOK_API_VERSION),
+            'fb_btn_shape' => $this->configuration->get(self::OAUTH_FACEBOOK_BUTTON_SHAPE),
             'fb_redirect_url' => $facebookRedirectUrl
         ];
 
@@ -77,15 +85,25 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
         if ($enableGoogle){
             $googleClientId = trim($configuration['google_client_id'] ?? '');
             $googleClientSecret = trim($configuration['google_client_secret'] ?? '');
+            $googleBtnShape = $configuration['google_btn_shape'];
+            $googleBtnTheme = $configuration['google_btn_theme'];
+
             $this->configuration->set(self::OAUTH_GOOGLE_CLIENT_ID, $googleClientId);
             $this->configuration->set(self::OAUTH_GOOGLE_CLIENT_SECRET, $googleClientSecret);
+            $this->configuration->set(self::OAUTH_GOOGLE_BUTTON_SHAPE, $googleBtnShape);
+            $this->configuration->set(self::OAUTH_GOOGLE_BUTTON_THEME, $googleBtnTheme);
         }
             
         // Facebook
         $this->configuration->set(self::OAUTH_FACEBOOK_ENABLED, $enableFacebook);
         if ($enableFacebook) {
             $fbAppId = trim($configuration['fb_app_id'] ?? '');
+            $fbApiVersion = $configuration['fb_api_version'];
+            $fbBtnShape = $configuration['fb_btn_shape'];
+
             $this->configuration->set(self::OAUTH_FACEBOOK_APP_ID, $fbAppId);
+            $this->configuration->set(self::OAUTH_FACEBOOK_API_VERSION, $fbApiVersion);
+            $this->configuration->set(self::OAUTH_FACEBOOK_BUTTON_SHAPE, $fbBtnShape);
         }
 
         return [];
@@ -122,12 +140,21 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
 
         if ($enableFacebook) {
             $fbAppId = trim($configuration['fb_app_id'] ?? '');
+            $fbApiVersion = trim($configuration['fb_api_version'] ?? '');
+
             if (empty($fbAppId)) {
                 $errors[] = $this->translator->trans('Facebook App ID cannot be empty', [], 'Modules.Oauthsignin.Admin');
             } elseif (strlen($fbAppId) > self::CONFIG_MAXLENGTH) {
                 $errors[] = $this->translator->trans('Facebook App ID is too long', [], 'Modules.Oauthsignin.Admin');
             }
+
+            if (empty($fbApiVersion)) {
+                $errors[] = $this->translator->trans('Facebook API version cannot be empty', [], 'Modules.Oauthsignin.Admin');
+            } elseif (strlen($fbApiVersion) > self::CONFIG_API_MAXLENGTH) {
+                $errors[] = $this->translator->trans('Facebook API version is too long', [], 'Modules.Oauthsignin.Admin');
+            }
         }
+
         return $errors;
     }
 

@@ -1,6 +1,6 @@
 {
     "name": "prestashop/oauthsignin",
-    "description": "OAuth Sign In With Google and Apple Module",
+    "description": "Module enabling quick login via popular providers like Google or Facebook",
     "license": "AFL-3.0",
     "authors": [
       {

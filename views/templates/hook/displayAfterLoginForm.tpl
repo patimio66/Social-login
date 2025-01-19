@@ -1,9 +1,9 @@
 {* displayAfterLoginForm.tpl *}
 {if $enable_google == true}
-<div class="my-google-btn-wrapper">
+<div class="google-btn-wrapper">
     <a href="{$google_login_url}">
-        <button class="gsi-material-button">
-        <div class="gsi-material-button-state"></div>
+        <button class="gsi-material-button {$google_btn_shape} {$google_btn_theme}">
+        <div class="gsi-material-button-state {$google_btn_theme}"></div>
         <div class="gsi-material-button-content-wrapper">
             <div class="gsi-material-button-icon">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
@@ -14,16 +14,26 @@
                 <path fill="none" d="M0 0h48v48H0z"></path>
             </svg>
             </div>
-            <span class="gsi-material-button-contents">Sign in with Google</span>
+            <span class="gsi-material-button-contents">{$google_btn_text}</span>
             <span style="display: none;">Sign in with Google</span>
         </div>
         </button>
     </a>
 </div>
 {/if}
+
 {if $enable_facebook == true}
-<div id="fb-root" class="my-google-btn-wrapper">
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+<div id="fb-root"></div>
+<div class="fb-btn-wrapper">
+    <div class="fb-login-button" 
+        scope="public_profile,email" 
+        data-onlogin="checkLoginState()" 
+        data-width="290" data-size="large" 
+        data-button-type="" 
+        data-layout="{$fb_btn_shape}" 
+        data-auto-logout-link="false" 
+        data-use-continue-as="false">
+    </div>
 </div>
 {/if}
 <hr/>

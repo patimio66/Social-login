@@ -2,7 +2,6 @@ services:
   _defaults:
     public: true
 
-  # OAuthSignIn configuration text form
   prestashop.module.oauthsignin.form.type.oauthsignin_configuration_text:
     class: 'PrestaShop\Module\OAuthSignIn\Form\OAuthSignInFormType'
     parent: 'form.type.translatable.aware'
@@ -29,8 +28,3 @@ services:
       - '@prestashop.module.oauthsignin.form.oauthsignin_form_data_provider'
       - 'PrestaShop\Module\OAuthSignIn\Form\OAuthSignInFormType'
       - 'OAuthSignInConfiguration'
-
-  prestashop.module.oauthsignin.google_login_service:
-    class: 'PrestaShop\Module\OAuthSignIn\Services\GoogleLoginService'
-    arguments:
-    - '@prestashop.module.oauthsignin.form.oauthsignin_data_configuration'
