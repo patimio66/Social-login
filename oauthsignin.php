@@ -1,22 +1,4 @@
 <?php
-/**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License version 3.0
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
- */
 
 declare(strict_types=1);
 
@@ -33,6 +15,7 @@ class OAuthSignIn extends Module implements WidgetInterface
         $this->name = 'oauthsignin';
         $this->author = 'Adam Mańko';
         $this->version = '1.0';
+        $this->tab = 'customers';
         $this->need_instance = false;
         
         $this->bootstrap = true;
@@ -66,7 +49,16 @@ class OAuthSignIn extends Module implements WidgetInterface
      */
     public function uninstall()
     {
-        return parent::uninstall();
+        return parent::uninstall()
+            && Configuration::deleteByName('OAUTH_GOOGLE_ENABLED')
+            && Configuration::deleteByName('OAUTH_GOOGLE_CLIENT_ID')
+            && Configuration::deleteByName('OAUTH_GOOGLE_CLIENT_SECRET')
+            && Configuration::deleteByName('OAUTH_GOOGLE_BUTTON_SHAPE')
+            && Configuration::deleteByName('OAUTH_GOOGLE_BUTTON_THEME')
+            && Configuration::deleteByName('OAUTH_FACEBOOK_ENABLED')
+            && Configuration::deleteByName('OAUTH_FACEBOOK_APP_ID')
+            && Configuration::deleteByName('OAUTH_FACEBOOK_API_VERSION')
+            && Configuration::deleteByName('OAUTH_FACEBOOK_BUTTON_SHAPE');
     }
 
     public function getContent()
