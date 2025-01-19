@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="" source-language="pl-PL" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="e21a59ad123e5cfb3f4569129bb87d58">
+        <source>Social login</source>
+        <target>Social login</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="5339497fa20fc9b6aa15a55a134cc2c6">
+        <source>Module enabling quick login via popular providers like Google or Facebook</source>
+        <target>Moduł umożliwiający szybkie logowanie przez Google lub Facebooka</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="95aacd4d4ac87524cfc63d9cc94c008e">
+        <source>Sign in with Google</source>
+        <target>Zaloguj się przez Google</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="212c21ba0e54b0cd31872b06ab2cf1a7">
+        <source>User did not authorize the application</source>
+        <target>Użytkownik nie autoryzował aplikacji</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="957bce97ebf902591f5cfdb3f4ac680c">
+        <source>Unknown error, please try again</source>
+        <target>Nieznany błąd, spróbuj ponownie</target>
+        <note>Line: </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

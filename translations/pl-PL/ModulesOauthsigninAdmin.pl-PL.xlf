@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="" source-language="pl-PL" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="d4eab6753f9f3d4b57580427264beaa6">
+        <source>Successful update</source>
+        <target>Zaktualizowano pomyślnie</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="451040ea1285f831be4973c20c40f888">
+        <source>Google Client ID cannot be empty</source>
+        <target>Pole Google Client ID nie może być puste</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="d9695123a20314739bef9b8a9b8fad38">
+        <source>Google Client ID is too long</source>
+        <target>Pole Google Client ID ma za długą treść</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="605a14ffd56bc3fc81f801fe082c87de">
+        <source>Google Client Secret cannot be empty</source>
+        <target>Pole Google Client Secret nie może być puste</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="ef7286ae853ef235763c3fc3e7c46a74">
+        <source>Google Client Secret is too long</source>
+        <target>Pole Google Client Secret ma za długą treść</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="b2d7b9bea731f55c19c255f5e23d92b7">
+        <source>Facebook App ID cannot be empty</source>
+        <target>Pole Facebook App ID nie może być puste</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="e9c091aa7f9b168ddfe28ec27826a5ed">
+        <source>Facebook App ID is too long</source>
+        <target>Pole Facebook App ID jest za długie</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="3df568040415ef36b6c3092fa272c5a3">
+        <source>Facebook API version cannot be empty</source>
+        <target>Facebook API version cannot be empty</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="42c84bc53eb08f72ce652b5aa3301d12">
+        <source>Facebook API version is too long</source>
+        <target>Facebook API version is too long</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="c439f050173f6e240bef6e4d16530cbc">
+        <source>Enable "Sign in with Google" button</source>
+        <target>Włącz przycisk "Zaloguj się przez Google"</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="2a9fc9efe56971027f8c92eff8dc0c39">
+        <source>Google Client ID</source>
+        <target>Google Client ID</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="3708118127eeeb0b1c89deca62badbfa">
+        <source>Google Client Secret</source>
+        <target>Google Client Secret</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="1b819803fc396a8cc36f7981fad31b4c">
+        <source>Your redirect URL</source>
+        <target>Twój URI przekierowania</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="80987b0e838f68d1335223fbde5bcfd9">
+        <source>Use this during registration in Google Cloud Platform website</source>
+        <target>Użyj tego podczas rejestracji na stronie Google Cloud Platform</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="0ec4e78a97e4868ffc18e8779ac9f44c">
+        <source>Select button shape</source>
+        <target>Wybierz kształt przycisku</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="7545c5d3ad246a683a197a2903a4d5e6">
+        <source>Rectangular</source>
+        <target>Prostokątny</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="bef2481eda40bd121482f1814d72314f">
+        <source>Rounded</source>
+        <target>Zaokrąglony</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="54f6be7b02d32b40c7a1cf4805097b91">
+        <source>Select button theme</source>
+        <target>Wybierz motyw przycisku</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="9914a0ce04a7b7b6a8e39bec55064b82">
+        <source>Light</source>
+        <target>Jasny</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="a18366b217ebf811ad1886e4f4f865b2">
+        <source>Dark</source>
+        <target>Ciemny</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="e9bb5320b3890b6747c91b5a71ae5a01">
+        <source>Neutral</source>
+        <target>Neutralny</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="1e0d5a13c01b534c3eb0a649edf799d0">
+        <source>Enable "Sign in with Facebook" button</source>
+        <target>Włącz przycisk "Zaloguj się przez Facebooka"</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="466ff61f4367f43a1e2bf7656be3a022">
+        <source>Facebook App ID</source>
+        <target>Facebook App ID</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="2f52d2fe7fe9c04280dff660684a390e">
+        <source>Facebook API Version</source>
+        <target>Wersja Facebook API</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="1e670d26a93a83e114fa0977a08217d9">
+        <source>Use this during registration in Meta for Developers website</source>
+        <target>Użyj tego podczas rejestracji na stronie Meta for Developers</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="15a9da6ed6f32b5263b9d6da105a6d88">
+        <source>Google configuration</source>
+        <target>Konfiguracja Google</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="0e27392dc2c51d1051905a0eafb0098e">
+        <source>Google button style</source>
+        <target>Stylizowanie przycisku Google</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="dbac520e2bc9f4c365579f767b7575e0">
+        <source>Facebook configuration</source>
+        <target>Konfiguracja Facebooka</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="523df4db746f7cded0e4345ab9d4c7c3">
+        <source>Facebook button style</source>
+        <target>Stylizowanie przycisku Facebooka</target>
+        <note>Line: </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

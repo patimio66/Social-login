@@ -3,7 +3,7 @@
         'name' => 'prestashop/oauthsignin',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '67da80a1953416c7cd0c33b7d50ea3541c1e4458',
+        'reference' => 'fb3f1ce6273892bb6fa7616e7ec8ad802fd52241',
         'type' => 'prestashop-module',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -112,7 +112,7 @@
         'prestashop/oauthsignin' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '67da80a1953416c7cd0c33b7d50ea3541c1e4458',
+            'reference' => 'fb3f1ce6273892bb6fa7616e7ec8ad802fd52241',
             'type' => 'prestashop-module',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

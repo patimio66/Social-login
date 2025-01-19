@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="" source-language="pl-PL" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="40556ad8535bb55117b1b0ba96d3112d">
+        <source>No access token provided</source>
+        <target>Token dostępu nie został dostarczony</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="8b4617c474370447398c4cdf1d0e7901">
+        <source>The email address could not be retrieved</source>
+        <target>Adres email nie został przekazany</target>
+        <note>Line: </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
