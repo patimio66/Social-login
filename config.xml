@@ -5,7 +5,7 @@
     <version><![CDATA[1.0.0]]></version>
     <description><![CDATA[Module enabling quick login via popular providers like Google or Facebook]]></description>
     <author><![CDATA[Adam Mańko]></author>
-    <tab><![CDATA[customers]]></tab>
+    <tab><![CDATA[front_office_features]]></tab>
 	<confirmUninstall><![CDATA[This action will disable login function via Google or Facebook]]></confirmUninstall>
     <is_configurable>1</is_configurable>
     <need_instance>0</need_instance>

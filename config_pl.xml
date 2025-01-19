@@ -5,7 +5,7 @@
     <version><![CDATA[1.0.0]]></version>
     <description><![CDATA[Moduł umożliwiający szybkie logowanie przez Google lub Facebooka]]></description>
     <author><![CDATA[Adam Mańko]></author>
-    <tab><![CDATA[customers]]></tab>
+    <tab><![CDATA[front_office_features]]></tab>
 	<confirmUninstall><![CDATA[Odinstalowanie spowoduje wyłączenie możliwości logowania się przez Google lub Facebooka]]></confirmUninstall>
     <is_configurable>1</is_configurable>
     <need_instance>0</need_instance>

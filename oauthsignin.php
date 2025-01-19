@@ -15,7 +15,7 @@ class OAuthSignIn extends Module implements WidgetInterface
         $this->name = 'oauthsignin';
         $this->author = 'Adam Mańko';
         $this->version = '1.0';
-        $this->tab = 'customers';
+        $this->tab = 'front_office_features';
         $this->need_instance = false;
         
         $this->bootstrap = true;

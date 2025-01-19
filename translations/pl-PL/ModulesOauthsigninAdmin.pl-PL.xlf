@@ -39,12 +39,12 @@
       </trans-unit>
       <trans-unit id="3df568040415ef36b6c3092fa272c5a3">
         <source>Facebook API version cannot be empty</source>
-        <target>Facebook API version cannot be empty</target>
+        <target>Pole wersja Facebook API nie może być puste</target>
         <note>Line: </note>
       </trans-unit>
       <trans-unit id="42c84bc53eb08f72ce652b5aa3301d12">
         <source>Facebook API version is too long</source>
-        <target>Facebook API version is too long</target>
+        <target>Pole wersja Facebook API ma za długą treść</target>
         <note>Line: </note>
       </trans-unit>
       <trans-unit id="c439f050173f6e240bef6e4d16530cbc">
