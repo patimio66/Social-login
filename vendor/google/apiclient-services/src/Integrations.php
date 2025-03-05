@@ -624,6 +624,10 @@ class Integrations extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'GCPCloudEventsMode' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'triggerId' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -1075,6 +1079,16 @@ class Integrations extends \Google\Service
                 'fileFormat' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],'execute' => [
+              'path' => 'v1/{+parent}/testCases:execute',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],'executeTest' => [
