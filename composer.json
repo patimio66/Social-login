@@ -16,6 +16,13 @@
       "php": ">=8.0.0",
       "google/apiclient": "^2.15.0"
     },
+    "require-dev": {
+    "phpstan/phpstan": "^1.10",
+    "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "scripts": {
+    "phpstan": "phpstan analyse --configuration=tests/phpstan.neon"
+    },
     "config": {
       "preferred-install": "dist",
       "prepend-autoloader": false,
