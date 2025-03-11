@@ -1,8 +1,23 @@
 <?php
 
-class OAuthSignInFacebookCallbackModuleFrontController extends ModuleFrontController
+declare(strict_types=1);
+
+/**
+ * Class FacebookCallbackModuleFrontController
+ *
+ * Handles the Facebook OAuth callback process
+ */
+class FacebookCallbackModuleFrontController extends ModuleFrontController
 {
-    public function postProcess()
+    /**
+     * Processes the Facebook callback request:
+     * - Checks for the access token
+     * - Fetches user details (email, first_name, last_name) from Facebook
+     * - Logs in an existing customer or creates a new account if needed
+     *
+     * @return void
+     */
+    public function postProcess(): void
     {
         parent::postProcess();
 

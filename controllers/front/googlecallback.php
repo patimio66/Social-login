@@ -1,8 +1,24 @@
 <?php
 
-class OAuthSignInGoogleCallbackModuleFrontController extends ModuleFrontController
+declare(strict_types=1);
+
+/**
+ * Class GoogleCallbackModuleFrontController
+ *
+ * Handles the Google OAuth callback
+ */
+class GoogleCallbackModuleFrontController extends ModuleFrontController
 {
-    public function postProcess()
+    /**
+     * Processes the Google callback request:
+     * - Retrieves the authorization code
+     * - Exchanges it for an access token
+     * - Fetches user profile data (email, given_name, family_name)
+     * - Logs in an existing customer or creates a new account if needed
+     *
+     * @return void
+     */
+    public function postProcess(): void
     {
         parent::postProcess();
 

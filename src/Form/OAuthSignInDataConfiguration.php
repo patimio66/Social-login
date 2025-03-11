@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace PrestaShop\Module\OAuthSignIn\Form;
@@ -9,7 +10,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Context;
 
 /**
- * Configuration is used to save data to configuration table and retrieve from it.
+ * Handles saving and retrieving OAuth configuration data
  */
 final class OAuthSignInDataConfiguration implements DataConfigurationInterface
 {
@@ -37,17 +38,24 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
      */
     private $translator;
 
+    /**
+     * @param ConfigurationInterface $configuration
+     * @param TranslatorInterface $translator
+     */
     public function __construct(ConfigurationInterface $configuration, TranslatorInterface $translator)
     {
         $this->configuration = $configuration;
         $this->translator = $translator;
     }
 
+    /**
+     * @return array Returns an array of configuration values
+     */
     public function getConfiguration(): array
     {
         $return = [];
         
-        //generating redirect link viewed in module back office form field
+        //generating redirect link displayed in BO module configuration page
         $context = Context::getContext();
         $googleRedirectUrl = $context->link->getModuleLink('oauthsignin', 'googlecallback', [], true);
         $facebookRedirectUrl = $context->link->getModuleLink('oauthsignin', 'facebookcallback', [], true);
@@ -69,6 +77,11 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
         return $return;
     }
 
+    /**
+     * @param array $configuration
+     *
+     * @return array Returns an empty array on success, or an array of error messages
+     */
     public function updateConfiguration(array $configuration): array
     {
         $errors = $this->validateConfiguration($configuration);
@@ -110,9 +123,11 @@ final class OAuthSignInDataConfiguration implements DataConfigurationInterface
     }
 
     /**
-     * Ensure the parameters passed are valid.
+     * Validates the provided configuration
      *
-     * @return bool Returns true if no exception are thrown
+     * @param array $configuration
+     *
+     * @return array Returns an array of error messages
      */
     public function validateConfiguration(array $configuration): array
     {
