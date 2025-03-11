@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /**
- * Class FacebookCallbackModuleFrontController
+ * Class OAuthSignInFacebookCallbackModuleFrontController
  *
  * Handles the Facebook OAuth callback process
  */
-class FacebookCallbackModuleFrontController extends ModuleFrontController
+class OAuthSignInFacebookCallbackModuleFrontController extends ModuleFrontController
 {
     /**
      * Processes the Facebook callback request:
@@ -49,8 +49,8 @@ class FacebookCallbackModuleFrontController extends ModuleFrontController
         $existingCustomerId = $customer->customerExists($email, true, true);
 
         if (!$existingCustomerId) {
-            $customer->firstname = $data['first_name'] ?? 'Imię';
-            $customer->lastname = $data['last_name'] ?? 'Nazwisko';
+            $customer->firstname = $data['first_name'] ?? 'Name';
+            $customer->lastname = $data['last_name'] ?? 'Surname';
             $customer->email = $email;
             $customer->passwd = Tools::hash(Tools::passwdGen(12));
             $customer->add();

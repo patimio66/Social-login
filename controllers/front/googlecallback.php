@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /**
- * Class GoogleCallbackModuleFrontController
+ * Class OAuthSignInGoogleCallbackModuleFrontController
  *
  * Handles the Google OAuth callback
  */
-class GoogleCallbackModuleFrontController extends ModuleFrontController
+class OAuthSignInGoogleCallbackModuleFrontController extends ModuleFrontController
 {
     /**
      * Processes the Google callback request:
