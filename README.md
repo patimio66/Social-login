@@ -33,7 +33,7 @@ Po skonfigurowaniu i aktywacji modułu, przyciski logowania pojawią się na str
 ## Pobierz moduł
 
 Pobierz moduł:  
-[📦 Social Login (.zip)](https://github.com/Maniek247/oauthsignin/releases/download/Prestashop/oauthsignin.zip)
+[📦 Social Login (.zip)](https://github.com/Maniek247/Social-login/releases/download/v.1.0.1/oauthsignin.zip)
 
 ---
 
@@ -72,7 +72,7 @@ After configuration and activation, the login buttons will appear on the PrestaS
 ## Download the Module
 
 Download the module here:  
-[📦 Social Login (.zip)](https://github.com/Maniek247/oauthsignin/releases/download/Prestashop/oauthsignin.zip)
+[📦 Social Login (.zip)](https://github.com/Maniek247/Social-login/releases/download/v.1.0.1/oauthsignin.zip)
 
 ---
 
