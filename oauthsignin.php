@@ -6,8 +6,6 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-// require_once __DIR__ . '/vendor/autoload.php';
-
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 class OAuthSignIn extends Module implements WidgetInterface
